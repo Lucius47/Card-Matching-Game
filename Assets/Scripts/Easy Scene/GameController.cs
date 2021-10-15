@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private EasyCardsSpawner spawner;
+    [SerializeField] private CardsSpawner spawner;
     [SerializeField] private UIController uiController;
     //[SerializeField] private SceneAnimationPlayer sceneLoader;
 
     [SerializeField] private int numberOfLevels;
+    [SerializeField] public int totalTime;
     [SerializeField] private int scorePenalty;
     [SerializeField] private int scoreReward;
 

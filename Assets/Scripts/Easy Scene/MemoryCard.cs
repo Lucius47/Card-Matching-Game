@@ -58,8 +58,14 @@ public class MemoryCard : MonoBehaviour
 
 	public IEnumerator DestroyCard()
 	{
-		StartCoroutine(CardTouchAnimation(this.gameObject));
-		yield return new WaitForSeconds(0.5f);
+		for (float t = 0; t < 1; t += Time.deltaTime / animationDuration)
+        {
+			transform.localScale = Vector3.Lerp(transform.localScale, transform.localScale * 0.1f, t);
+			yield return null;
+        }
+
+		//StartCoroutine(CardTouchAnimation(this.gameObject));
+		//yield return new WaitForSeconds(5f);
 		Destroy(this.gameObject);
 		
 	}
@@ -68,17 +74,14 @@ public class MemoryCard : MonoBehaviour
 	{
 
 		Vector3 actualScale = card.transform.localScale;
-		Vector3 targetScaleMin = new Vector3(0.8f, 0.8f, 0.8f);
-		Vector3 targetScaleMax = new Vector3(1.2f, 1.2f, 1.2f);
+		Vector3 targetScaleMin = Vector3.one * 0.8f;
+		Vector3 targetScaleMax = Vector3.one * 1.2f;
 
 		for (float t = 0; t < 1; t += Time.deltaTime / animationDuration)
 		{
 			card.transform.localScale = Vector3.Lerp(targetScaleMin, targetScaleMax, t);
 
 			yield return null;
-
-
-
 
 		}
 		for (float j = 0; j < 1; j += Time.deltaTime / animationDuration)
@@ -87,9 +90,6 @@ public class MemoryCard : MonoBehaviour
 
 			yield return null;
 		}
-
-
-
 	}
 
 
@@ -106,9 +106,6 @@ public class MemoryCard : MonoBehaviour
 
 			yield return null;
 
-
-
-
 		}
 		for (float j = 0; j < 1; j += Time.deltaTime / animationDuration)
 		{
@@ -116,8 +113,6 @@ public class MemoryCard : MonoBehaviour
 
 			yield return null;
 		}
-
-
 
 	}
 }

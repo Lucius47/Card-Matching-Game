@@ -12,19 +12,26 @@ public class UIController : MonoBehaviour
     [SerializeField] private Text scoreOnGameWin;
     [SerializeField] private Slider timeBar;
 
-    [SerializeField] private float totalTime;
-    
+    [SerializeField] private Sprite[] backgroundImages;
+    [SerializeField] private Image backgroundImage;
+
+    private float totalTime;
+
 
     private float timeLeft;
-    public int score;
-    public bool gameOver = false;
-    public int level = 0;
+    [HideInInspector] public int score = 0;
+    [HideInInspector] public bool gameOver = false;
+    [HideInInspector] public int level = 0;
 
 	private void Start()
 	{
+        backgroundImage.sprite = backgroundImages[Random.Range(0,backgroundImages.Length)];
+        totalTime = FindObjectOfType<GameController>().totalTime;
         TimerReset();
         timeBar.maxValue = totalTime;
 	}
+
+    
 	private void Update()
 	{
         if (!gameOver)
@@ -58,6 +65,7 @@ public class UIController : MonoBehaviour
         gameOver = true;
         score += (int)timeLeft;
         scoreOnGameWin.text = score.ToString();
+        scoreText.text = score.ToString();
         gameWinUI.gameObject.SetActive(true);
         
 	}

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SceneLoader: MonoBehaviour
 {
-	[SerializeField] private SceneAnimationPlayer sceneLoader;
+	[SerializeField] private LevelLoader sceneLoader;
 	
 
 	
